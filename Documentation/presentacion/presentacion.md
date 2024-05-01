@@ -19,12 +19,14 @@ style: |
 # **TITULO DEL PROYECTO**
 
 ## CICLO
+C.F.G.S Desarrollo de Aplicaciones Web
 
 ### Nombre y Apellidos  
+Javier García Montero
 
 #### IES Virgen del Carmen
 
-Abril 2023
+Junio 2024
 
 ---
 
