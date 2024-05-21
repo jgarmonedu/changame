@@ -17,22 +17,20 @@
                             <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                                 <i class="fa-solid fa-magnifying-glass fa-1x text-green-600"></i>
                             </div>
-                            <x-form.input-search name="search" type="search" id="search" text="Search"
-                                                 class="block w-full p-2.5 ps-10 text-md text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-950 focus:border-blue-950 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-950 dark:focus:border-blue-950"
-
-                                                 placeholder="{{ __('Search') }}"
-
-                                                 :filters="$filters"/>
-                            {{--                            <form method="GET" action="/products">--}}
-{{--                                @if (request('from_age'))--}}
-{{--                                    <input type="hidden" name="from_age" value="{{ request('from_age') }}">--}}
-{{--                                @endif--}}
-{{--                                <input type="search" id="search" name="search"--}}
-{{--                                       class="block w-full p-2.5 ps-10 text-md text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-950 focus:border-blue-950 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-950 dark:focus:border-blue-950"--}}
-{{--                                       placeholder="{{ __('Search') }}"--}}
-{{--                                       value="{{ request('search') }}"--}}
-{{--                                />--}}
-{{--                            </form>--}}
+                            <form method="GET" action="/products/?{{ http_build_query(request()->except('search','page')) }}">
+                                @if (isset($filters))
+                                    @foreach ($filters as $filter)
+                                        @if (request($filter) && $filter!='search')
+                                            <input type="hidden" name="{{$filter}}" value="{{ request($filter) }}">
+                                        @endif
+                                    @endforeach
+                                @endif
+                                <input type="search" id="search" name="search"
+                                       class="block w-full p-2.5 ps-10 text-md text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-950 focus:border-blue-950 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-950 dark:focus:border-blue-950"
+                                       placeholder="{{ __('Search') }}"
+                                       value="{{ request('search') }}"
+                                />
+                            </form>
                         </div>
                     </div>
 
