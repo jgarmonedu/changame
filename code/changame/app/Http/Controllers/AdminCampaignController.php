@@ -45,7 +45,7 @@ class AdminCampaignController extends Controller
     {
         $campaign->delete();
 
-        return back()->with('success', 'Camapaign Deleted!');
+        return back()->with('success', 'Campaign Deleted!');
     }
 
     protected function validateCampaign(?Campaign $campaign = null): array
