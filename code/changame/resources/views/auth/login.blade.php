@@ -1,27 +1,27 @@
 <x-guest-layout>
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
-
+    <x-form.google-button></x-form.google-button>
     <form method="POST" action="{{ route('login') }}">
         @csrf
-
+        <x-form.text-input type="hidden" name="currentUrl" id="currentUrl" :value="url()->previous()" />
         <!-- Email Address -->
         <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+            <x-form.input-label for="email" :value="__('Email')" />
+            <x-form.text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
+            <x-form.input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
         <!-- Password -->
         <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
+            <x-form.input-label for="password" :value="__('Password')" />
 
-            <x-text-input id="password" class="block mt-1 w-full"
+            <x-form.text-input id="password" class="block mt-1 w-full"
                             type="password"
                             name="password"
                             required autocomplete="current-password" />
 
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+            <x-form.input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
 
         <!-- Remember Me -->
@@ -39,9 +39,12 @@
                 </a>
             @endif
 
-            <x-primary-button class="ms-3">
+            <x-form.primary-button class="ms-3">
                 {{ __('Log in') }}
-            </x-primary-button>
+            </x-form.primary-button>
+        </div>
+        <div class="d-flex gap-2 gap-md-4 flex-column flex-md-row justify-content-md-center mt-5">
+            <a href="{{ route('register') }}" class="link-secondary text-decoration-none">{{__('Register')}}</a>
         </div>
     </form>
 </x-guest-layout>
