@@ -1,0 +1,30 @@
+[
+    {
+        "name": "Educación de calidad",
+        "alias": "ODS 4",
+        "excerpt": "Garantizar una educación inclusiva, equitativa y de calidad y promover oportunidades de aprendizaje durante toda la vida para todos",
+        "url": "https://www.un.org/sustainabledevelopment/es/education/",
+        "logo": "https://www.un.org/sustainabledevelopment/es/wp-content/uploads/sites/3/2018/07/S_SDG-goals_icons-individual-rgb-04.png"
+    },
+    {
+        "name": "Ciudades y comunidades sostenibles de calidad",
+        "alias": "ODS 11",
+        "excerpt": "Lograr que las ciudades sean más inclusivas, seguras, resilientes y sostenibles",
+        "url": "https://www.un.org/sustainabledevelopment/es/cities/",
+        "logo": "https://www.un.org/sustainabledevelopment/es/wp-content/uploads/sites/3/2018/07/S_SDG-goals_icons-individual-rgb-11.png"
+    },
+    {
+        "name": "Producción y consumo responsables",
+        "alias": "ODS 12",
+        "excerpt": "Garantizar modalidades de consumo y producción sostenibles",
+        "url": "https://www.un.org/sustainabledevelopment/es/sustainable-consumption-production/",
+        "logo": "https://www.un.org/sustainabledevelopment/es/wp-content/uploads/sites/3/2018/07/S_SDG-goals_icons-individual-rgb-12.png"
+    },
+    {
+        "name": "Acción por el clima",
+        "alias": "ODS 13",
+        "excerpt": "Adoptar medidas urgentes para combatir el cambio climático y sus efectos",
+        "url": "https://www.un.org/sustainabledevelopment/es/climate-change-2/",
+        "logo": "https://www.un.org/sustainabledevelopment/es/wp-content/uploads/sites/3/2018/07/S_SDG-goals_icons-individual-rgb-13.png"
+    }
+]
