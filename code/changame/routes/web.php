@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminCampaignController;
 use App\Http\Controllers\AdminCategoryController;
 use App\Http\Controllers\LocalDataController;
+use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdminProductController;
@@ -46,6 +47,8 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
+// Newsletter
+Route::post('newsletter', NewsletterController::class);
 
 // company
 Route::get('/', [LocalDataController::class, 'show'])->name('home');

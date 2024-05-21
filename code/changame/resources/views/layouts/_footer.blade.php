@@ -8,21 +8,31 @@
                             class="">!</h2>
 
                     <br>
-                    <div class="mt-10 pb-8s">
-                        <form class="flex items-center max-w-lg mx-auto">
-                            <label for="subscription" class="sr-only">Email</label>
-                            <div class="relative w-full">
-                                <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                                    <i class="fa-solid fa-envelope text-green-700"></i>
+                    <div class="mt-10 pb-8">
+                        <form method="post" action="/newsletter">
+                            @csrf
+                            <div class="flex items-center max-w-lg mx-auto">
+                                <label for="subscription" class="sr-only">Email</label>
+                                <div class="w-full">
+                                    <div class="relative">
+                                        <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                                            <i class="fa-solid fa-envelope text-green-700"></i>
+                                        </div>
+                                        <input type="email" id="email" name="email"
+                                               class="rounded-lg text-md w-full ps-10 bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 block  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                               placeholder="{{ __('Email') }}"/>
+                                    </div>
+
                                 </div>
-                                <input type="email" id="subscription" name="subscription"
-                                       class="rounded-lg text-md w-full ps-10 bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 block  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                       placeholder="{{ __('Email') }}"/>
-                                <x-form.input-error :messages="$errors->get('subscription')" class="mt-2"/>
+                                <x-form.secondary-button>
+                                    {{ __('Subscribe') }}
+                                </x-form.secondary-button>
                             </div>
-                            <x-form.secondary-button>
-                                {{ __('Subscribe') }}
-                            </x-form.secondary-button>
+                            <div>
+                                @error('email')
+                                    <x-form.input-error :messages="$message" class="mt-2"/>
+                                @enderror
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -49,6 +59,7 @@
             </footer>
         </div>
     </div>
+    <x-flash/>
 </div>
 </body>
 </html>
