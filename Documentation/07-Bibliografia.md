@@ -1,8 +1,13 @@
 # Bibliografía
 
-Apunta aquí cada Web, tutorial, vídeo que veas y qué has aprendido con él:
+* Objetivos de desarrollo sostenible (ODS) 
+<https://www.un.org/sustainabledevelopment/es/objetivos-de-desarrollo-sostenible/>
 
-* Tutorial para hacer servicios REST en Spring: <https://spring.io/guides/tutorials/rest/>.
+* Documentación Tailwind CSS 
+<https://tailwindcss.com/docs/installation>
 
+* The PHP Framework for Web Artisan 
+<https://laravel.com/docs/11.x>
 
-* Objetivos de desarrollo sostenible (ODS) <https://www.un.org/sustainabledevelopment/es/objetivos-de-desarrollo-sostenible/>
+* Metodología Híbrida para Desarrollo de Software 
+<https://www.iiis.org/CDs2012/CD2012IMC/CICIC_2012/PapersPdf/CB153YB.pdf>

@@ -87,7 +87,7 @@ Se muestra la planificación del proyecto mediante diagrama de Gantt
 * Pulimos los posibles “bugs”
 * Entrega del documento final 
 
-**Semana del 12 al 16 de junio**  
+**Semana del 12 al 14 de junio**  
 
 * Organización de la presentación
 * Entrega de la presentación para la exposición 
@@ -143,6 +143,23 @@ Además, se aporta una presentación explicativa del desarrollo del proyecto. y 
 
 Investigación de estudios y proyectos similares
 
+- https://ludonix.ch/es-ES/juegos/juegos-de-mesa/89
+- https://www.kidalos.com/
+- https://www.apli.com/es/juegos/juegos-de-mesa
+- https://www.bigbuy.eu/
 
-## Briefing
+
+## Público objetivo
+
+La amplicación está diseña para ser utilizad dentro del ámbito nacional. Por tanto no es multiidioma, aunque intertamente se ha definido el texto prácticamente en su totalidad, con idioma inglés, empleado archivos de configuración de idioma _"es.json"_ para su traducción a español. 
+
+El dominio que se puede utilizar para el despliegue de la aplicación puede ser _chargame.es_ o _chargame.com_ (dominios disponibles actualmente). Por tanto, y puesto que se trata de una herramienta de ayuda que permita contactar con gente para realizar un trueque de productos propios, el **público objetivo** está enfocado en personas que se encuentren próximos dentro de un ámbito geográfico.
+
+
+
+
+
+
+
+
 
