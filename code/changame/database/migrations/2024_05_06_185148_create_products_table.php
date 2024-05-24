@@ -25,7 +25,7 @@ return new class extends Migration
             $table->enum('difficulty', ['1','2','3','4']);
             $table->year('release_year');
             $table->enum('condition',['acceptable','good','very good','like new']);
-            $table->string('language',['ES','EN','FR','DE','PT','IT','OT']);
+            $table->enum('language',['ES','EN','FR','DE','PT','IT','OT']);
             $table->timestamps();
         });
     }

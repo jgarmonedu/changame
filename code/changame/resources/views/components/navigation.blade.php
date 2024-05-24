@@ -2,14 +2,14 @@
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-24">
-            <div class="flex align-items-center" style="width: 100%">
+            <div class="flex align-items-center w-full">
                 <!-- Logo -->
                 <div class="justify-center lg:justify-start">
                     <a href="/">
                         <x-application-logo class="block h-9 w-auto fill-current text-gray-800"/>
                     </a>
                 </div>
-                <div class="hidden space-x-3 sm:-my-px sm:ms-10 sm:flex sm:justify-end" style="width: 100%">
+                <div class="hidden space-x-3 sm:-my-px sm:ms-10 sm:flex sm:justify-end align-items-center" style="width: 100%">
                     <div class="flex flex-col justify-center px-10" style="width: 60%">
                         <label for="search"
                                class="hidden mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">{{ __('Search') }}</label>
@@ -40,8 +40,16 @@
                     <x-nav-link :href="route('products')" :active="request()->routeIs('products')">
                         {{ __('Catalogue') }}
                     </x-nav-link>
-                    <x-icon-link>
-                        <i class="fa-sharp fa-regular fa-heart fa-lg text-blue-950"></i>
+                    <x-icon-link class="position-relative" :href="route('my.products.favorite')" :active="request()->routeIs('my.products.favorite')">
+                        <i class="fa-sharp fa-regular fa-heart fa-xl text-blue-950"></i>
+                        @auth
+                        @if(Auth::user()->favorites()->count()>0)
+                        <span
+                            class="position-absolute pt-1.5 start-100 translate-middle badge rounded-pill bg-warning">
+                            <span class="text-blue-950">{{ Auth::user()->favorites()->count() }}</span>
+                        </span>
+                        @endif
+                        @endauth
                     </x-icon-link>
                     @auth
                         <x-icon-link>
@@ -69,8 +77,8 @@
                                 </x-slot>
                                 <x-slot name="content">
                                     <span class="ps-2 text-xs uppercase"> {{ __('Explorer') }}</span>
-                                    <x-dropdown-link :href="route('profile.edit')">
-                                        {{ __('Favourites') }}
+                                    <x-dropdown-link :href="route('my.products.favorite')">
+                                        {{ __('Favorites') }}
                                     </x-dropdown-link>
                                     <x-dropdown-link :href="route('profile.edit')">
                                         {{ __('Agreements') }}
@@ -146,7 +154,7 @@
 
                 <div class="mt-3 space-y-1">
                     <x-responsive-nav-link :href="route('profile.edit')">
-                        {{ __('Favourites') }}
+                        {{ __('Favorites') }}
                     </x-responsive-nav-link>
                     <x-responsive-nav-link :href="route('profile.edit')">
                         {{ __('Agreements') }}

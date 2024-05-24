@@ -26,7 +26,7 @@ class ProductController extends Controller
         return Product::latest()->take($number)->get();
     }
 
-
+    
     public function show(Product $product)
     {
         return view('products.show', [

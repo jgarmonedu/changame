@@ -4,10 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Product extends Model
 {
     use HasFactory;
+
+    protected $guarded = [];
 
     protected $with = ['category', 'owner'];
 
@@ -66,7 +69,17 @@ class Product extends Model
 
     public function owner()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class,'user_id');
     }
+
+    public function favorites()
+    {
+        return $this->hasMany(Favorite::class);
+    }
+    public function users(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class,'favorites');
+    }
+
 
 }

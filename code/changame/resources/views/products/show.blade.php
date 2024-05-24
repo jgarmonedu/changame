@@ -18,26 +18,27 @@
         <div class="col-span-8">
             <div class="hidden lg:flex justify-between mb-6">
                 <a href="{{ route('products') }}" class="transition-colors duration-300 relative inline-flex items-center text-lg hover:text-green-600">
-                    <svg width="22" height="22" viewBox="0 0 22 22" class="mr-2">
-                        <g fill="none" fill-rule="evenodd">
-                            <path stroke="#000" stroke-opacity=".012" stroke-width=".5" d="M21 1v20.16H.84V1z">
-                            </path>
-                            <path class="fill-current"
-                                  d="M13.854 7.224l-3.847 3.856 3.847 3.856-1.184 1.184-5.04-5.04 5.04-5.04z">
-                            </path>
-                        </g>
-                    </svg>
+                    <i class="fa-solid fa-angle-left mr-2"></i>
                     {{ __('Go Catalogue') }}
                 </a>
             </div>
             @auth()
             <div class="flex justify-between items-center mb-10">
                 <h1 class="font-bold text-3xl lg:text-4xl"> {{ $product->name }} </h1>
-                @if ( $product->user_id != Auth::user()->id )
-                    <x-icon-link href="/">
-                        <i class="fa-sharp fa-regular fa-heart fa-2xl text-blue-950"></i>
-                    </x-icon-link>
-                @endif
+                <form method="post" action="/my/product/favorite/{{$product->id}}" enctype="multipart/form-data">
+                    @csrf
+                    @if ($product->favorites()->where('user_id',Auth::user()->id)->exists())
+                        <a href="javascript:void(0);" onclick="$(this).closest('form').submit();"
+                           class="action-heart text-blue-950" title="{{__('Delete')}}" data-abc="true">
+                            <i class="fa fa-solid fa-heart fa-2xl hover:text-amber-400"></i>
+                        </a>
+                    @else
+                        <a href="javascript:void(0);" onclick="$(this).closest('form').submit();"
+                           class="action-heart text-blue-950" title="{{__('Add')}}" data-abc="true">
+                            <i class="fa fa-sharp fa-regular fa-heart fa-2xl hover:text-amber-400"></i>
+                        </a>
+                    @endif
+                </form>
             </div>
             @endauth
             <div class="space-y-4 lg:text-lg leading-loose text-justify">{!! $product->description !!}</div>
@@ -59,7 +60,7 @@
                     <div class="flex justify-between items-center mb-10 text-sm mt-4 gap-3">
                         @if( $product->user_id != Auth::user()->id )
                         <div class="inline-flex gap-3 items-center">
-                            <img src="/images/avatar.png" alt="Avatar" class="w-12">
+                            <img src="https://i.pravatar.cc/60?u={{ $product->owner->id }}" alt="Avatar" class="w-12 rounded-full">
                             <div class="text-left">
                                 <h5 class="font-bold">
                                     <a href="/products/?owner={{ $product->owner->id }}">{{ $product->owner->name }}</a>

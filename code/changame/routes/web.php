@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminCategoryController;
 use App\Http\Controllers\LocalDataController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProductFavoritesController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdminProductController;
 use Illuminate\Support\Facades\Route;
@@ -19,10 +20,13 @@ Route::middleware('auth')->group(function () {
     Route::get('my/products/', [AdminProductController::class,'index'])->name('my.products');
     Route::post('my/products/',[AdminProductController::class,'store']);
 
+    Route::get('my/products/favorite/',[ProductFavoritesController::class,'index'])->name('my.products.favorite');
+    Route::post('my/product/favorite/{product}',[ProductFavoritesController::class,'store']);
+
     Route::get('my/product/create',[AdminProductController::class,'create'])->name('my.product.create');
     Route::get('my/product/{product}/edit',[AdminProductController::class,'edit']);
     Route::patch('my/product/{product}',[AdminProductController::class,'update']);
-    Route::delete('my/product/{post}',[AdminProductController::class,'destroy']);
+    Route::delete('my/product/{product}',[AdminProductController::class,'destroy']);
 });
 /*Route::middleware('can:owner')->group(function () {
     Route::resource('/my/products', AdminProductController::class)->except('index');
