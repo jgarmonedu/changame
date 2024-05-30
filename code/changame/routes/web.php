@@ -4,8 +4,9 @@ use App\Http\Controllers\AdminCampaignController;
 use App\Http\Controllers\AdminCategoryController;
 use App\Http\Controllers\LocalDataController;
 use App\Http\Controllers\NewsletterController;
+use App\Http\Controllers\ProductAgreementController;
 use App\Http\Controllers\ProductController;
-use App\Http\Controllers\ProductFavoritesController;
+use App\Http\Controllers\ProductFavoriteController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdminProductController;
 use Illuminate\Support\Facades\Route;
@@ -14,23 +15,34 @@ use Illuminate\Support\Facades\Route;
 Route::get('/products/', [ProductController::class,'index'])->name('products');
 Route::get('/products/{product:id}', [ProductController::class, 'show']);
 
+Route::get('/welcome',function() {
+    return view ('welcome');
+});
 
 // Owner
 Route::middleware('auth')->group(function () {
     Route::get('my/products/', [AdminProductController::class,'index'])->name('my.products');
     Route::post('my/products/',[AdminProductController::class,'store']);
 
-    Route::get('my/products/favorite/',[ProductFavoritesController::class,'index'])->name('my.products.favorite');
-    Route::post('my/product/favorite/{product}',[ProductFavoritesController::class,'store']);
+    //Prodcuts
+    Route::get('my/product/create',[AdminProductController::class,'create'])->name('my.product.create')->middleware('auth');
+    Route::get('my/product/{product}/edit',[AdminProductController::class,'edit'])->middleware('auth');
+    Route::patch('my/product/{product}',[AdminProductController::class,'update'])->middleware('auth');
+    Route::delete('my/product/{product}',[AdminProductController::class,'destroy'])->middleware('auth');
 
-    Route::get('my/product/create',[AdminProductController::class,'create'])->name('my.product.create');
-    Route::get('my/product/{product}/edit',[AdminProductController::class,'edit']);
-    Route::patch('my/product/{product}',[AdminProductController::class,'update']);
-    Route::delete('my/product/{product}',[AdminProductController::class,'destroy']);
+    // Favorites
+    Route::get('my/products/favorite/',[ProductFavoriteController::class,'index'])->name('my.products.favorite');
+    Route::get('my/products/favorite/{product}',[ProductFavoriteController::class,'show'])->name('my.products.interested');
+    Route::post('my/product/favorite/{product}',[ProductFavoriteController::class,'store']);
+
+    //Agreements
+    Route::get('my/products/agreement/',[ProductAgreementController::class,'index'])->name('my.products.agreement');
+    Route::get('my/product/agreement/{product}/edit',[ProductAgreementController::class,'edit']);
+    Route::patch('my/product/agreement/{product}',[ProductAgreementController::class,'update']);
+    Route::delete('my/product/agreement/{product}',[ProductAgreementController::class,'destroy']);
+
 });
-/*Route::middleware('can:owner')->group(function () {
-    Route::resource('/my/products', AdminProductController::class)->except('index');
-});*/
+
 
 // Admin Section
 Route::middleware('can:admin')->group(function () {

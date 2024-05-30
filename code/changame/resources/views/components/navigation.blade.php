@@ -43,15 +43,24 @@
                     <x-icon-link class="position-relative" :href="route('my.products.favorite')" :active="request()->routeIs('my.products.favorite')">
                         <i class="fa-sharp fa-regular fa-heart fa-xl text-blue-950"></i>
                         @auth
-                        @if(Auth::user()->favorites()->count()>0)
+                        @if(Auth::user()->favorites()->whereNull('change_with')->count()>0)
                         <span
                             class="position-absolute pt-1.5 start-100 translate-middle badge rounded-pill bg-warning">
-                            <span class="text-blue-950">{{ Auth::user()->favorites()->count() }}</span>
+                            <span class="text-blue-950">{{ Auth::user()->favorites()->whereNull('change_with')->count() }}</span>
                         </span>
                         @endif
                         @endauth
                     </x-icon-link>
                     @auth
+                        <x-icon-link class="position-relative" :href="route('my.products.agreement')" :active="request()->routeIs('my.products.agreement')">
+                            <i class="fa-solid fa-people-arrows fa-lg  text-blue-950"></i>
+                            @if( Auth::user()->agreements()->count()>0)
+                                <span
+                                    class="position-absolute pt-1.5 ms-4 translate-middle badge rounded-pill bg-green-300">
+                                    <span class="text-blue-950">{{  Auth::user()->agreements()->count() }}</span>
+                                </span>
+                            @endif
+                        </x-icon-link>
                         <x-icon-link>
                             <i class="fa-regular fa-bell  fa-lg text-blue-950"></i>
                         </x-icon-link>
@@ -80,7 +89,7 @@
                                     <x-dropdown-link :href="route('my.products.favorite')">
                                         {{ __('Favorites') }}
                                     </x-dropdown-link>
-                                    <x-dropdown-link :href="route('profile.edit')">
+                                    <x-dropdown-link :href="route('my.products.agreement')">
                                         {{ __('Agreements') }}
                                     </x-dropdown-link>
                                     <x-dropdown-link :href="route('my.products')">   {{--?owner='.Auth::user()->id --}}
