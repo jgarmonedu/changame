@@ -52,11 +52,6 @@
                 <x-form.text-input id="phone_number" name="phone_number" type="tel" class="mt-1 block w-full" :value="old('phone_number', $user->phone_number)" autofocus autocomplete="phone_number" pattern="/^(\+\d{1,3}[- ]?)?\d{9}$/"/>
                 <x-form.input-error class="mt-2" :messages="$errors->get('phone_number')" />
             </div>
-{{--            $table->string('address')->nullable();--}}
-{{--            $table->string('city')->nullable();--}}
-{{--            $table->string('state')->nullable();--}}
-{{--            $table->string('country')->nullable();--}}
-{{--            $table->string('postal_code')->nullable();--}}
             <div class="w-1/2">
                 <x-form.input-label for="date_of_birth" :value="__('Date of birth')" />
                 <x-form.text-input data-provide="datepicker" id="date_of_birth" name="date_of_birth" type="date" class="mt-1 block w-full" :value="old('date_of_birth', $user->date_of_birth)" autofocus autocomplete="date_of_birth" />
@@ -65,7 +60,9 @@
         </div>
         <div>
             <x-form.input-label for="country" :value="__('Country')" />
-            <x-form.text-input id="country" name="country" type="text" class="mt-1 block w-full" :value="old('country', $user->country)"  autofocus autocomplete="country" />
+            <select id="country" name="country" class="mt-1 block w-full border-gray-300 focus:border-green-600 focus:ring-green-600 rounded-md shadow-sm" :value="old('country', $user->country)"  autofocus autocomplete="country">
+                <option value=' '>{{__('Select country...')}}</option>
+            </select>
             <x-form.input-error class="mt-2" :messages="$errors->get('country')" />
         </div>
         <div>
