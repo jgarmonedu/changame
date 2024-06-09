@@ -17,8 +17,6 @@
 
     @vite(['resources/sass/app.scss', 'resources/css/app.css', 'resources/js/app.js'])
     <!-- Scripts -->
-    <script src="https://cdn.ckeditor.com/ckeditor5/41.4.2/classic/translations/es.js"></script>
-   <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>-->
     <script type="module" src="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-fileinput@5.5.0/js/fileinput.min.js"></script>
     <script type="module" src="/js/locales/es.js"></script>
 

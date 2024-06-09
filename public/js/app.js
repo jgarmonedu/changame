@@ -13,7 +13,7 @@ $( document ).ready(function (event) {
         showCaption: true,
         maxFileSize: 1000,
         maxFileCount: 3,
-        showClose: false,
+        showClose: true,
         overwriteInitial: true,
         initialPreview: ($('#inputLogoActual').val()!='')?[$('#inputLogoActual').val()]:false,
         initialPreviewAsData: true,

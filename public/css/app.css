@@ -32,12 +32,6 @@
     transform-origin: right;
 }
 
-
-/* CKEDITOR */
-.ck-editor__editable {
-    min-height: 150px;
-}
-
 /* PRODUCT ACTION */
 .product-action {
     bottom: 0;
