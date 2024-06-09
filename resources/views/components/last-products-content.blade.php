@@ -8,7 +8,7 @@
                         <div class="carousel-item {{ $i==0 ? 'active' : ' '  }}">
                             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                                 @for ($j = $i; $j < $i + 3 && $j < count($products); $j++)
-                                <div class="col-4">
+                                <div class="col-md-4">
                                     <x-product-card :product="$products[$j]"/>
                                 </div>
                                 @endfor

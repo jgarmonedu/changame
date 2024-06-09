@@ -51,7 +51,7 @@
             </div>
         </div>
         <div class="absolute">
-            <a href="/my/product/{{ $product->id }}/edit" class="text-gray-400-950 hover:text-blue-950 " title="{{__('Contact')}}">
+            <a href="/chatify/{{ $product->agreement->owner->id }}" class="text-gray-400-950 hover:text-blue-950 " title="{{__('Contact')}}">
                 <i class="fa-solid fa-people-arrows fa-3x"></i>
             </a>
         </div>
