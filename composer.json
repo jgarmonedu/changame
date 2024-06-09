@@ -10,8 +10,10 @@
         "itsgoingd/clockwork": "^5.2",
         "jeroennoten/laravel-adminlte": "^3.11",
         "laravel/framework": "^11.0",
+        "laravel/socialite": "^5.14",
         "laravel/tinker": "^2.9",
         "mailchimp/marketing": "^3.0",
+        "munafio/chatify": "^1.6",
         "yajra/laravel-datatables-oracle": "^11.1"
     },
     "require-dev": {

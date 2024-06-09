@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Agreement;
+use App\Models\Campaign;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\User;
@@ -19,7 +20,9 @@ class AdminPanelController extends Controller
             'products' => Product::all(),
             'agreements' => Agreement::all(),
             'userRegistrations' => $this->showChartUserRegistrations(),
-            'showChartProductsByCategory' => $this->showChartProductsByCategory()
+            'showChartProductsByCategory' => $this->showChartProductsByCategory(),
+            'donations' => Product::whereNotNull('campaign')->get(),
+            'campaigns' => Campaign::all()
         ]);
     }
 
@@ -37,6 +40,12 @@ class AdminPanelController extends Controller
         ]);
     }
 
+    public function products()
+    {
+        return view('admin/products', [
+            'products' => Product::all(),
+        ]);
+    }
     private function showChartUserRegistrations()
     {
 

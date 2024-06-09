@@ -333,17 +333,17 @@ return [
             'submenu' => [
                 [
                     'text' => 'Productos',
-                    'url' => '#',
+                    'url' => 'admin/products',
                     'icon_color' => 'success',
                 ],
                 [
                     'text' => 'Categorías',
-                    'url' => '#',
+                    'url' => 'admin/categories',
                     'icon_color' => 'success',
                 ],
                 [
                     'text' => 'Campañas',
-                    'url' => '#',
+                    'url' => 'admin/campaigns',
                     'icon_color' => 'success',
                 ],
             ],

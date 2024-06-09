@@ -3,47 +3,49 @@
 namespace App\Http\Controllers;
 
 use App\Models\Campaign;
+use Illuminate\Http\Request;
 
 class AdminCampaignController extends Controller
 {
     public function index()
     {
-        return view('admin.campaigns.index', [
-            'campaigns' => Campaign::all()
-        ]);
+        if(request()->ajax()) {
+            return datatables()->of(Campaign::all())
+                ->addColumn('action', 'admin/campaigns/campaign-action')
+                ->rawColumns(['action'])
+                ->addIndexColumn()
+                ->make(true);
+        }
+        return view('admin.campaigns.index');
     }
 
-    public function create()
+    public function store(Request $request)
     {
-        return view('admin.campaigns.create');
+        $campaignId = $request->id;
+        $attributes   = array_merge(
+            [ 'id' => $campaignId ],
+            [
+                'name' => $request->name,
+                'slug' => $request->slug,
+                'description' => $request->description,
+                'date_from' => $request->date_from,
+                'date_to' => $request->date_to
+            ]);
+
+        $campaign = Campaign::updateOrCreate($attributes);
+        return Response()->json($campaign);
     }
 
-    public function store()
+    public function edit(Request $request)
     {
-        Campaign::create(array_merge($this->validateCampaign()));
-
-        return redirect('/admin/campaigns');
+        $campaign = Campaign::query()->where('id',$request->id)->first();
+        return Response()->json($campaign);
     }
 
-    public function edit(Campaign $campaign)
+    public function destroy(Request $request)
     {
-        return view('admin.campaigns.edit', ['campaign' => $campaign]);
-    }
-
-    public function update(Campaign $campaign)
-    {
-        $attributes = $this->validateCampaign($campaign);
-
-        $campaign->update($attributes);
-
-        return back()->with('success', 'Campaign Updated!');
-    }
-
-    public function destroy(Campaign $campaign)
-    {
-        $campaign->delete();
-
-        return back()->with('success', 'Campaign Deleted!');
+        $campaign = Campaign::query()->where('id',$request->id)->delete();
+        return Response()->json($campaign);
     }
 
     protected function validateCampaign(?Campaign $campaign = null): array
