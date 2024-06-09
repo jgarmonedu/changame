@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminCategoryController;
 use App\Http\Controllers\AdminCampaignController;
 use App\Http\Controllers\AdminPanelController;
 use App\Http\Controllers\LocalDataController;
@@ -10,7 +11,10 @@ use App\Http\Controllers\ProductDonateController;
 use App\Http\Controllers\ProductFavoriteController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdminProductController;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Laravel\Socialite\Facades\Socialite;
 
 // Products
 Route::get('/products/', [ProductController::class,'index'])->name('products');
@@ -18,6 +22,30 @@ Route::get('/products/{product:id}', [ProductController::class, 'show']);
 
 Route::get('/welcome',function() {
     return view ('welcome');
+});
+
+// Google OAuth
+Route::get('/login-google', function () {
+    return Socialite::driver('google')->redirect();
+});
+
+Route::get('/google-callback', function () {
+    $user = Socialite::driver('google')->user();
+    $userExists = User::where('external_id',$user->id)->where('external_auth','google')->first();
+    if ($userExists) {
+        Auth::login($userExists);
+    } else {
+        $newUser = User::create([
+            'name' => $user->name,
+            'email' => $user->email,
+            'avatar' => $user->avatar,
+            'external_id' => $user->id,
+            'external_auth' => 'google',
+        ]);
+
+        Auth::login($newUser);
+    }
+    return redirect ('/');
 });
 
 // Owner
@@ -54,8 +82,21 @@ Route::middleware('can:admin')->group(function () {
     Route::get('/dashboard', [AdminPanelController::class, 'index'])->name('dashboard');
     Route::get('/admin/profile', [AdminPanelController::class, 'profile'])->name('admin.profile');
     Route::get('/admin/users', [AdminPanelController::class, 'users'])->name('admin.users');
-    Route::resource('admin/campaigns', AdminCampaignController::class);
-    Route::resource('admin/categories', AdminCategoryController::class);
+    Route::get('/admin/products', [AdminPanelController::class, 'products'])->name('admin.products');
+
+// Campaign Section
+    Route::get('/admin/campaigns', [AdminCampaignController::class, 'index']);
+    Route::post('/admin/campaigns/store', [AdminCampaignController::class, 'store']);
+    Route::post('/admin/campaigns/edit', [AdminCampaignController::class, 'edit']);
+    Route::post('/admin/campaigns/delete', [AdminCampaignController::class, 'destroy']);
+    //Route::resource('admin/campaigns', AdminCampaignController::class)->except(['show',]);
+
+// Category Section
+    Route::get('/admin/categories', [AdminCategoryController::class, 'index']);
+    Route::post('/admin/categories/store', [AdminCategoryController::class, 'store']);
+    Route::post('/admin/categories/edit', [AdminCategoryController::class, 'edit']);
+    Route::post('/admin/categories/delete', [AdminCategoryController::class, 'destroy']);
+    //Route::resource('admin/categories', AdminCategoryController::class);
 })->middleware(['auth', 'verified']);
 
 Route::middleware('auth')->group(function () {

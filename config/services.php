@@ -36,5 +36,11 @@ return [
         'lists' => [
             'subscribers' => env('MAILCHIMP_LIST_SUBSCRIBERS')
         ]
-    ]
+    ],
+
+    'google' => [
+        'client_id' => env('GOOGLE_OAUTH_ID'),
+        'client_secret' => env('GOOGLE_OAUTH_KEY'),
+        'redirect' => env('GOOGLE_OAUTH_REDIRECT'),
+    ],
 ];
