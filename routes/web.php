@@ -38,6 +38,7 @@ Route::get('/google-callback', function () {
         $newUser = User::create([
             'name' => $user->name,
             'email' => $user->email,
+            'password' => Hash::make('smile'),
             'avatar' => $user->avatar,
             'external_id' => $user->id,
             'external_auth' => 'google',

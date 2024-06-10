@@ -82,7 +82,7 @@
                             @endif
                         </x-icon-link>
                         <x-icon-link>
-                            <i class="fa-regular fa-bell  fa-lg text-blue-950"></i>
+                            <i class="fa-regular fa-bell  fa-xl text-blue-950"></i>
                         </x-icon-link>
                     @endauth
                     @guest
@@ -102,7 +102,7 @@
                                     <x-form.primary-button class="text-blue-950 gap-2 hover:text-white font-semibold justify-content-between">
                                         <div>
                                             @if (Auth::user()->photo)
-                                                <img class="rounded-full shadow-md w-24 m-[-3px]" src="{{ asset('storage/' .  Auth::user()->photo) }}" >
+                                                <img class="rounded-full shadow-md m-[-3px]" style="width:9rem" src="{{ asset('storage/' .  Auth::user()->photo) }}" >
                                             @else
                                                 <i class="fa-regular fa-user w-4"></i>
                                             @endif

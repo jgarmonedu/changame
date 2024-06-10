@@ -60,17 +60,9 @@
         $( document ).ready(function (event) {
             $('#users').DataTable({
                 layout: {
-                    topStart: 'buttons'
+                    topStart: 'buttons',
                 },
-                buttons: [
-                    {
-                        text: 'Alert',
-                        action: function (e, dt, node, config, cb) {
-                            alert('Activated!');
-                            this.disable(); // disable button
-                        }
-                    }
-                ],
+                buttons: [],
                 language: {
                     "Processing":     "Procesando...",
                     "sLengthMenu":     "Mostrar _MENU_ registros",

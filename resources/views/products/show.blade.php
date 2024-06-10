@@ -33,7 +33,7 @@
             @auth()
                 <div class="flex justify-between items-center mb-10">
                     <h1 class="font-bold text-3xl lg:text-4xl"> {{ $product->name }} </h1>
-                    @empty($product->change_with)
+                    @if (is_null($product->change_with) AND ($product->owner->id != Auth::user()->id))
                     <form method="post" action="/my/product/favorite/{{$product->id}}" enctype="multipart/form-data">
                         @csrf
                         @if ($product->favorites()->where('user_id',Auth::user()->id)->exists())

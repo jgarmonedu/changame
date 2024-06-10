@@ -36,9 +36,10 @@ class ProductDonateController extends Controller
         } else {
             $campaign = new Campaign;
             if ($campaign->campaignActive()) {
+                $campaignActive = $campaign->campaignActive();
                 try {
                     if (is_null($product->campaign)) {
-                        $product->campaign = $campaign->id;
+                        $product->campaign = $campaignActive->id;
                         session()->flash('success', __('Product has been checked for') . ' ' . __('Donate'));
                     } else {
                         $product->campaign = null;

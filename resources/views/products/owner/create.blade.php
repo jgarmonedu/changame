@@ -134,7 +134,7 @@
                     <x-form.text-input id="thumbnail"
                                        type="file"
                                        name="thumbnail[]"
-                                       autocomplete="thumbnail"/>
+                                       autocomplete="thumbnail" multiple/>
                     <x-form.input-error :messages="$errors->get('thumbnail')" class="mt-2"/>
                 </div>
             </div>
