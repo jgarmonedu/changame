@@ -1,11 +1,8 @@
-<form method="post" action="/my/product/{{ $product->id }}">
-    @csrf
-    @method('DELETE')
-    {{ $slot }}
-</form>
+
+{{ $slot }}
 
 <x-modal name="confirm-product-deletion" :show="$errors->isNotEmpty()" focusable>
-    <form method="post" action="{{ route('profile.destroy') }}" class="p-6">
+    <form method="post" action="/my/product/{{ $product->id }}" class="p-6">
         @csrf
         @method('DELETE')
 
@@ -18,9 +15,9 @@
         </p>
 
         <div class="mt-6 flex justify-end">
-            <x-form.primary-button class="text-green-600 hover:bg-green-600 hover:text-white mx-4" x-on:click="$dispatch('close')">
+            <x-form.default-button type="button" class="mx-4" @click="$dispatch('close')">
                 {{ __('Cancel') }}
-            </x-form.primary-button>
+            </x-form.default-button>
 
             <x-form.danger-button>
                 {{ __('Delete') }}

@@ -21,6 +21,7 @@
                 </header>
             @endif
             <x-flash/>
+            @include('sweetalert::alert')
             <main class="mt-6 min-h-screen">
                 {{ $slot }}
             </main>

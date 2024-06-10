@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ProductFavoriteController extends Controller
 {
@@ -72,8 +73,9 @@ class ProductFavoriteController extends Controller
                         $productAgreement->save();
 
                         DB::commit();
-                        session()->flash('success', __('You have reached an agreement'));
-                        redirect('my.products.agreement');;
+                        //session()->flash('success', __('You have reached an agreement'));
+                        alert()->success(__('Congratulations!'), __('You have reached an agreement'));
+                        return redirect('my.products.agreement');;
                     } catch (\Exception $e) {
                         DB::rollback();
                         session()->flash('success',$e->getMessage());

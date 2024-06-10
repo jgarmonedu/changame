@@ -40,10 +40,12 @@ class ProductDonateController extends Controller
                 try {
                     if (is_null($product->campaign)) {
                         $product->campaign = $campaignActive->id;
-                        session()->flash('success', __('Product has been checked for') . ' ' . __('Donate'));
+                        alert()->success(__('Thanks!'),  __('Product has been checked for') . ' ' . __('Donate'));
+                        //session()->flash('success', __('Product has been checked for') . ' ' . __('Donate'));
                     } else {
                         $product->campaign = null;
-                        session()->flash('success', __('Product has been unchecked for') . ' ' . __('Donate'));
+                        alert()->warning(__('Whoops!'),__('Product has been unchecked for') . ' ' . __('Donate'));
+                        //session()->flash('success', __('Product has been unchecked for') . ' ' . __('Donate'));
                     }
                     $product->save();
                 } catch (Exception $e) {

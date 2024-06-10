@@ -94,10 +94,11 @@
                                     <a href="/my/product/{{$product->id}}/edit">
                                         <x-form.default-button>{{__("Edit")}}</x-form.default-button>
                                     </a>
-                                    <x-product-confirmation-delete :product="$product">
+                                    <x-product-delete :product="$product">
                                         <x-form.danger-button x-data=""
-                                                              x-on:click.prevent="$dispatch('open-modal', 'confirm-product-deletion')">{{__("Remove")}}</x-form.danger-button>
-                                    </x-product-confirmation-delete>
+                                                              x-on:click.prevent="$dispatch('open-modal', 'confirm-product-deletion')">{{__("Remove")}}
+                                        </x-form.danger-button>
+                                    </x-product-delete>
                                 @endif
                     </div>
                 @else

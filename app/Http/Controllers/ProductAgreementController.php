@@ -49,23 +49,23 @@ class ProductAgreementController extends Controller
     public function destroy(Product $product)
     {
         if ($product->change_with) {
-            session()->flash('success', __('Agreement') .' '. __('Removed!')."!");
             DB::beginTransaction();
             try {
-                $product->change_with = null;
-                $product->state = null;
-                $product->save();
-
                 $productChangeWith = Product::find($product->change_with);
                 $productChangeWith->change_with = null;
                 $productChangeWith->state = null;
                 $productChangeWith->save();
 
-                $agreement = Agreement::getAgreementByProduct($product->id);
+                $product->change_with = null;
+                $product->state = null;
+                $product->save();
+
+                $agreements = new Agreement;
+                $agreement = $agreements->getAgreementByProduct($product->id);
                 $agreement->delete();
                 DB::commit();
-                session()->flash('success', __('You have reached an agreement'));
-
+                alert()->warning(__('Whoops!'),__('You have rejected an agreement'));
+                //session()->flash('success', __('You have rejected an agreement'));
             } catch (Exception $e) {
                 DB::rollback();
                 session()->flash('success',$e->getMessage());

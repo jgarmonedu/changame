@@ -34,13 +34,13 @@
                     @empty($product->change_with || $product->campaign)
                     <div class="md:shrink-0 px-8 py-4 w-1/10" >
                         <div class="flex sm:flex-row lg:flex-col justify-center gap-10">
-                            <x-product-confirmation-delete :product="$product" >
+                            <x-product-delete :product="$product" >
                                 <button class="text-red-500" title="{{__('Remove')}}"
                                         x-data=""
                                         x-on:click.prevent="$dispatch('open-modal', 'confirm-product-deletion')">
                                     <i class="fa-regular fa-xl fa-trash-can"></i>
                                 </button>
-                            </x-product-confirmation-delete>
+                            </x-product-delete>
                             <a href="/my/product/{{ $product->id }}/edit" class="text-blue-950 hover:text-navy-900"
                                title="{{__('Edit')}}"><i class="fa-regular fa-xl fa-pen-to-square"></i>
                             </a>
