@@ -1,66 +1,80 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<p align="center">
+<img src="/public/images/logo.png" alt="Logo" width="400">
+</p>
 
 <p align="center">
 <a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
+<a href=""><img src="http://poser.pugx.org/phpunit/phpunit/require/php" alt="PHP version"></a>
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+# Sobre ChanGame
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+La aplicación web proporciona un espacio donde un usuario tiene la posibilidad de ofrecer un juego que ya no utiliza, de forma que le permita la posibilidad de obtener a cambio otro de igual o distinta naturaleza. Todo ello, mediante el establecimiento de una serie de premisas que se deben cumplir. 
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+se parte de idea de que un juego puede tener distintas vidas de uso, o más concretamente, con el principio de que distintas personas puedan utilizar de un mismo juego. Por este motivo, se ha desarrollado una aplicación que proporciona una plataforma donde se puede ofrecer un juego propio, con idea de localizar a alguien que pueda estar interesado en él, de forma que se pueda alcanzar un acuerdo de intercambio. Esta aplicación permite localizar juegos a través de distintos criterios de búsqueda. Uno de los elementos más relevante de la aplicación es la posibilidad de gestión de los productos propios, así como los juegos de aquellas personas potenciales con las que se puede llegar a un acuerdo.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+A nivel técnico, se desarrolla una aplicación web híbrida progresiva (PWA) con diseño resposive, de forma que puede usarse a través de un dispositivo movil, mediante el uso de Laravel como framework de desarrollo con php, un sistema de gestión de bases de de datos como mysql, una biblioteca de diseño como Bootstrap, interfaces de aplicaciones API-REST con JSON y plugins específicos que servirán para la mejora la usabilidad web. 
 
-## Learning Laravel
+## Instalación de la aplicación
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+1. Clona o descarga el repositorio y sitúalo en el servidor.
+2. En el terminal ejecuta los siguientes comandos
+   1. `composer install ` 
+   2. `cp .env.example .env `
+3. Crea una base de datos y modifica el archivo `.env` con la base de datos creada. Elige un usario y password para la base de datos creada.
+4. Incluir los parámetros en el archivo `.env` para las siguientes APIs
+   1. MailChaimp para NewsLetter [info+](https://mailchimp.com/es/help/about-api-keys/)
+        ```
+        MAILCHIMP_KEY=
+        MAILCHIMP_LIST_SUBSCRIBERS=
+        ```
+   2. Pusher para Chat [info+](https://pusher.com/docs/channels/getting_started/javascript/?ref=nav)
+        ```
+        PUSHER_APP_ID=
+        PUSHER_APP_KEY=
+        PUSHER_APP_SECRET=
+        PUSHER_APP_CLUSTER=
+        ```
+   3. Google para Login [info+](https://developers.google.com/workspace/guides/create-credentials)
+        ```
+        GOOGLE_OAUTH_ID=
+        GOOGLE_OAUTH_KEY=
+        GOOGLE_OAUTH_REDIRECT=
+        ```
+5. Genera las tablas de las base de datos `php artisan migrate --seed`
+6. Genear la clave del proyecto Laravel `php artisan key:generate`
+7. Ejecutar `npm install && npm run dev` (modo de desarrollo)
+8. Generar los enlaces para los archivos locales `php artisan storage:link`
+9. Ejecutar `php artisan serve` 
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+**Observación:** Es recomendable disponer de un usuario de rol administrador. Por lo que se recomienda que se cree uno antes de comenzar con la aplicación. Esto se puede hacer a través de la siguiente ejecución:
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+`php artisan tinker`
 
-## Laravel Sponsors
+una vez dentro se haría mediante la siguiente sentencia
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+```
+// Crear un nuevo usuario con un rol administrador
+$user = User::create([
+    'name' => 'John Doe',
+    'email' => 'john@example.com',
+    'password' => bcrypt('password'),
+    'role' => 'admin',
+]);
+```
 
-### Premium Partners
+### Datos de prueba
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+Para probar la aplicación con datos, se puede descargar los archivos de demo para comenzar. Un vez realizado los pasos de instalación se pueden utilizar los siguientes datos de [demo](demo.sql)
 
-## Contributing
+Esto se hace desde la base de datos se ejecuta la consulta o a través de la opción de import del archivo `.sql`
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### Licencia
 
-## Code of Conduct
+Changema está bajo licencia [MIT license](https://choosealicense.com/licenses/mit/)
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### Autor
 
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Javier García Montero
+<img src="/public/images/logoJGM.png" alt="Logo" width="50">

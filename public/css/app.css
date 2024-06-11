@@ -32,7 +32,7 @@
     transform-origin: right;
 }
 
-/* PRODUCT ACTION */
+/* Production Action */
 .product-action {
     bottom: 0;
     left: 0;
@@ -92,7 +92,7 @@
 }
 
 
-/* Controls */
+/* Controls icons */
 i.fa-arrow-right,
 i.fa-arrow-left {
     background: none;
@@ -123,4 +123,8 @@ i.fa-arrow-left:hover {
     background-color:  #ffc107;
 }
 
+/* Accordion */
 
+.collapse {
+    visibility: visible !important;
+}
