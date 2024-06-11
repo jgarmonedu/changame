@@ -22,8 +22,13 @@ A nivel técnico, se desarrolla una aplicación web híbrida progresiva (PWA) co
 2. En el terminal ejecuta los siguientes comandos
    * `composer install ` 
    * `cp .env.example .env `
-3. Crea una base de datos y modifica el archivo `.env` con la base de datos creada. Elige un usario y password para la base de datos creada.
-4. Incluir los parámetros en el archivo `.env` para las siguientes APIs
+3. Crea una base de datos y modifica el archivo `.env` con la base de datos creada. Elige un usario y password para la base de datos creada. 
+
+4. Además, si se quiere cambiar el idioma a español. Debes indicar el idioma en el archivo `.env`
+     ```
+     APP_LOCALE=es
+     ```
+5. Incluir los parámetros en el archivo `.env` para las siguientes APIs
    * MailChaimp para NewsLetter [info+](https://mailchimp.com/es/help/about-api-keys/)
         ```
         MAILCHIMP_KEY=
@@ -42,23 +47,19 @@ A nivel técnico, se desarrolla una aplicación web híbrida progresiva (PWA) co
         GOOGLE_OAUTH_KEY=
         GOOGLE_OAUTH_REDIRECT=
         ```
-5. Genera las tablas de las base de datos `php artisan migrate --seed`
-6. Genear la clave del proyecto Laravel `php artisan key:generate`
-7. Ejecutar `npm install && npm run dev` (modo de desarrollo)
-8. Generar los enlaces para los archivos locales `php artisan storage:link`
-9. Ejecutar `php artisan serve` 
+6. Genera las tablas de las base de datos `php artisan migrate --seed`
+7. Genear la clave del proyecto Laravel `php artisan key:generate`
+8. Ejecutar `npm install && npm run dev` (modo de desarrollo)
+9. Generar los enlaces para los archivos locales `php artisan storage:link`
+10. Ejecutar `php artisan serve` 
 
-**Observación:** Es recomendable disponer de un usuario de rol administrador. Por lo que se recomienda que se cree uno antes de comenzar con la aplicación. Esto se puede hacer a través de la siguiente ejecución:
-
-`php artisan tinker`
-
-una vez dentro se haría mediante la siguiente sentencia (ejemplo)
+**Observación:** Es recomendable disponer de un usuario de rol administrador. Por lo que se en la instalación se ha creado un usuario administrador base. 
 
 ```
 // Crear un nuevo usuario con un rol administrador
 $user = User::create([
     'name' => 'Administrator',
-    'email' => 'admin@example.com',
+    'email' => 'admin@changame.com',
     'password' => bcrypt('password'),
     'role' => 'admin',
 ]);

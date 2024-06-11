@@ -1,0 +1,41 @@
+{
+    "Difficulties": {
+        "name" : "Difficulties",
+        "types" : {
+            "Initial": "Initial",
+            "Intermediate" : "Intermediate",
+            "Advanced" : "Advanced",
+            "Expert" : "Expert"
+        }
+    },
+    "Conditions": {
+        "name" : "Conditions",
+        "types" : {
+            "Acceptable": "Acceptable",
+            "Good" : "Good",
+            "VeryGood" : "VeryGood",
+            "LikeNew" : "LikeNew"
+        }
+    },
+    "Languages": {
+        "name" : "Languages",
+        "types" : {
+            "Spanish": "Spanish",
+            "English" : "English",
+            "French" : "French",
+            "German" : "German",
+            "Portuguese" : "Portuguese",
+            "Italian" : "Italian",
+            "Others" : "Others"
+        }
+    },
+
+    "State": {
+        "name" : "State",
+        "types" : {
+            "Pending": "Pending",
+            "Sended" : "Sended",
+            "Received" : "Received"
+        }
+    }
+}
