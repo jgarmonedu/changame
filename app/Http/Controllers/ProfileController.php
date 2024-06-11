@@ -57,13 +57,17 @@ class ProfileController extends Controller
         ]);
 
         $user = $request->user();
+        if ($user->products->whereNotNull('change_with')->first() or $user->products->whereNotNull('campaign')->first()){
+            session()->flash('error', __('There are products in agreements and/or donate .It is not possible to delete it.'));
+            return redirect(route('profile.edit'));;
+        } else {
+            Auth::logout();
 
-        Auth::logout();
+            $user->delete();
 
-        $user->delete();
-
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+        }
 
         return Redirect::to('/');
     }

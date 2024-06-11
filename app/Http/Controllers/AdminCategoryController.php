@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class AdminCategoryController extends Controller
@@ -41,7 +42,13 @@ class AdminCategoryController extends Controller
 
     public function destroy(Request $request)
     {
-        $category = Category::query()->where('id',$request->id)->delete();
+        $product=Product::where('category_id',$request->id)->first();
+        if($product) {
+            $category = ["error" => __('There are products using that category.It is not possible to delete it.')];
+            //alert()->error(__('Whoops!'),__('There are products using that category.It is not possible to delete it.'));
+        } else {
+            $category = Category::query()->where('id',$request->id)->delete();
+        }
         return Response()->json($category);
     }
 

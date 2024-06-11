@@ -1,11 +1,12 @@
 @extends('adminlte::page')
-
+@section('plugins.Sweetalert2', true);
 @section('title', 'Dashboard')
 
 @section('content_header')
     <div class="container">
         <x-application-logo alt="logo" width="250" class="m-auto"/>
     </div>
+    @include('sweetalert::alert')
 @stop
 
 @section('content')
@@ -153,7 +154,7 @@
                     success: () => {
                         $("#category-modal").modal('hide');
                         const oTable = $('#category').dataTable();
-                        oTable.draw(false);
+                        oTable.fnDraw(false);
                         $("#btn-save").html('Submit').attr("disabled", false);
                     },
                     error: function(xhr) {
@@ -194,9 +195,16 @@
                     url: "{{ url('admin/categories/delete') }}",
                     data: { id: id  },
                     dataType: 'json',
-                    success: function(){
+                    success: function(res){
+                        if (res['error']) {
+                            Swal.fire({
+                                type: 'error',
+                                title: "Oops...",
+                                text: res['error'],
+                            });
+                        }
                         const oTable = $('#category').dataTable();
-                        oTable.draw(false);
+                        oTable.fnDraw(false);
                     }
                 });
             }

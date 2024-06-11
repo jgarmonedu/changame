@@ -1,4 +1,5 @@
 @extends('adminlte::page')
+@section('plugins.Sweetalert2', true);
 
 @section('title', 'Dashboard')
 
@@ -286,7 +287,7 @@
                     success: (data) => {
                         $("#campaign-modal").modal('hide');
                         const oTable = $('#campaign').dataTable();
-                        oTable.draw(false);
+                        oTable.fnDraw(false);
                         $("#btn-save").html('Submit');
                         $("#btn-save"). attr("disabled", false);
                     },
@@ -331,6 +332,13 @@
                     data: { id: id  },
                     dataType: 'json',
                     success: function(res){
+                        if (res['error']) {
+                            Swal.fire({
+                                type: 'error',
+                                title: "Oops...",
+                                text: res['error'],
+                            });
+                        }
                         const oTable = $('#campaign').dataTable();
                         oTable.fnDraw(false);
                     }
