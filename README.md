@@ -20,23 +20,23 @@ A nivel técnico, se desarrolla una aplicación web híbrida progresiva (PWA) co
 
 1. Clona o descarga el repositorio y sitúalo en el servidor.
 2. En el terminal ejecuta los siguientes comandos
-   1. `composer install ` 
-   2. `cp .env.example .env `
+   * `composer install ` 
+   * `cp .env.example .env `
 3. Crea una base de datos y modifica el archivo `.env` con la base de datos creada. Elige un usario y password para la base de datos creada.
 4. Incluir los parámetros en el archivo `.env` para las siguientes APIs
-   1. MailChaimp para NewsLetter [info+](https://mailchimp.com/es/help/about-api-keys/)
+   * MailChaimp para NewsLetter [info+](https://mailchimp.com/es/help/about-api-keys/)
         ```
         MAILCHIMP_KEY=
         MAILCHIMP_LIST_SUBSCRIBERS=
         ```
-   2. Pusher para Chat [info+](https://pusher.com/docs/channels/getting_started/javascript/?ref=nav)
+   * Pusher para Chat [info+](https://pusher.com/docs/channels/getting_started/javascript/?ref=nav)
         ```
         PUSHER_APP_ID=
         PUSHER_APP_KEY=
         PUSHER_APP_SECRET=
         PUSHER_APP_CLUSTER=
         ```
-   3. Google para Login [info+](https://developers.google.com/workspace/guides/create-credentials)
+   * Google para Login [info+](https://developers.google.com/workspace/guides/create-credentials)
         ```
         GOOGLE_OAUTH_ID=
         GOOGLE_OAUTH_KEY=
@@ -52,13 +52,13 @@ A nivel técnico, se desarrolla una aplicación web híbrida progresiva (PWA) co
 
 `php artisan tinker`
 
-una vez dentro se haría mediante la siguiente sentencia
+una vez dentro se haría mediante la siguiente sentencia (ejemplo)
 
 ```
 // Crear un nuevo usuario con un rol administrador
 $user = User::create([
-    'name' => 'John Doe',
-    'email' => 'john@example.com',
+    'name' => 'Administrator',
+    'email' => 'admin@example.com',
     'password' => bcrypt('password'),
     'role' => 'admin',
 ]);
@@ -76,5 +76,4 @@ Changema está bajo licencia [MIT license](https://choosealicense.com/licenses/m
 
 ### Autor
 
-Javier García Montero
 <img src="/public/images/logoJGM.png" alt="Logo" width="50">
