@@ -27,6 +27,7 @@ $( document ).ready(function (event) {
     $('.thumbnail').click(function(){
         let newSrc = $(this).attr('src');   // Obtener la fuente de la imagen pequeña
         $('#mainImage').attr('src', newSrc);     // Cambiar la fuente de la imagen principal
+        $('#mainModalImage').attr('src', newSrc);  // Cambiar la fuente de la imagen modal
     });
 
     $('#country').val(''); // por defecto al cargar página

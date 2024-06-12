@@ -70,10 +70,10 @@ Route::middleware('auth')->group(function () {
     Route::patch('my/products/donate/{product}',[ProductDonateController::class,'update'])->middleware('auth');
 
     //Agreements
-    Route::get('my/products/agreement/',[ProductAgreementController::class,'index'])->name('my.products.agreement');
-    Route::get('my/product/agreement/{product}/edit',[ProductAgreementController::class,'edit']);
-    Route::patch('my/product/agreement/{product}',[ProductAgreementController::class,'update']);
-    Route::delete('my/product/agreement/{product}',[ProductAgreementController::class,'destroy']);
+    Route::get('/my/products/agreement/',[ProductAgreementController::class,'index'])->name('my.products.agreement');
+    Route::get('/my/product/agreement/{product}/edit',[ProductAgreementController::class,'edit']);
+    Route::patch('/my/product/agreement/{product}',[ProductAgreementController::class,'update']);
+    Route::delete('/my/product/agreement/{product}',[ProductAgreementController::class,'destroy']);
 
 });
 

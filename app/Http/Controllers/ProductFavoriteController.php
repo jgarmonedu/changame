@@ -75,7 +75,7 @@ class ProductFavoriteController extends Controller
                         DB::commit();
                         //session()->flash('success', __('You have reached an agreement'));
                         alert()->success(__('Congratulations!'), __('You have reached an agreement'));
-                        return redirect('my.products.agreement');;
+                        return redirect(route('my.products.agreement'));;
                     } catch (\Exception $e) {
                         DB::rollback();
                         session()->flash('success',$e->getMessage());

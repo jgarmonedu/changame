@@ -37,11 +37,11 @@ class AdminProductController extends Controller
             Product::create(array_merge($this->validateproduct(), [
                 'user_id' => request()->user()->id,
             ]));
-
+            $productId = DB::getPdo()->lastInsertId();
             if ($files) {
                 foreach($files as $file) {
                     Image::create([
-                        'product_id' => DB::getPdo()->lastInsertId(),
+                        'product_id' => $productId,
                         'thumbnail' => $file->store('thumbnails')
                     ]);
                 }

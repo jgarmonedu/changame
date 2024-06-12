@@ -11,7 +11,7 @@
                      x-on:click.prevent="$dispatch('open-modal', 'show-image-zoom')"/>
             <x-modal name="show-image-zoom" focusable>
                 <div class="modal-content overflow-auto touch-pinch-zoom scroll-smooth w-full">
-                    <x-image :product="$product" :image="$product->images()->first()" class="hover:scale-150 hover:translate-x-1/4 hover:translate-y-1/4"/>
+                    <x-image id="mainModalImage" :product="$product" :image="$product->images()->first()" class="hover:scale-150 hover:translate-x-1/4 hover:translate-y-1/4"/>
                 </div>
             </x-modal>
             <div class="flex flex-auto gap-3">

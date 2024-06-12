@@ -17,7 +17,7 @@ class ProductAgreementController extends Controller
 
     public function index()
     {
-        $user = User::find(Auth::user())->first();
+        $user = Auth::user();
         return view('products.agreements.index', [
             'filters' => $this->getFilters(),
             'products' => $user->agreements()->paginate(8)
