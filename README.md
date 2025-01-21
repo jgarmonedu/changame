@@ -4,7 +4,7 @@
 
 <p align="center">
 <a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href=""><img src="http://poser.pugx.org/phpunit/phpunit/require/php" alt="PHP version"></a>
+<a href=""><img src="https://poser.pugx.org/phpunit/phpunit/require/php" alt="PHP version"></a>
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
